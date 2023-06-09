@@ -3,68 +3,64 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import useStore from "../utils/navbar";
 
 const customClass: string = "pb-10";
 const active: string =
 	"transition ease-in-out duration-75 px-7 py-3 border border-transparent border-2 border-b-[#EB00FF] text-[#EB00FF]";
-let lastClicked: number = 1;
 
 const Navbar = () => {
 	const [isOpen, setIsOpen] = useState(false);
+	const [focus] = useStore((state) => [state.focus]);
 
-	const handleButtonClick = (event: any) => {
-		console.log(event);
-		if (event.target.tagName === "A" && event.target.className !== "close") {
-			event.target.setAttribute("class", active);
+	let lastClicked: number;
+	const storageDefault: string | null = localStorage.getItem("default");
+	if (storageDefault === null) {
+		lastClicked = 1;
+	} else {
+		lastClicked = parseInt(storageDefault);
+	}
 
-			const ul = document.querySelector(".my_ul");
-			if (ul) {
-				const lastElement: HTMLCollection[number] = ul.children[lastClicked];
-				const link = lastElement.children[0];
-				console.log(link, event.target);
-
-				if (link !== event.target) {
-					lastElement.children[0].removeAttribute("class");
-				}
-			}
-
-			lastClicked = parseInt(event.target.getAttribute("datatype"));
-		}
-		setIsOpen(false);
-	};
+	const handleButtonClick = (): void => setIsOpen(false);
 
 	return (
 		<>
 			<ul
 				className={`${
 					!isOpen ? "hidden" : "flex opacity-100"
-				} items-center justify-center overflow-hidden my_ul transition-opacity duration-300 ease-in-out opacity-0 absolute flex-col w-screen h-screen top-0 left-0 bg-black`}
-				onClick={(e) => handleButtonClick(e)}>
-				<li className="absolute right-0 m-5 top-0 close">
-					<Image src="/close.svg" alt="Close" width={20} height={20} />
+				} items-center justify-center overflow-hidden opacity-0 my_ul transition-opacity duration-300 ease-in-out absolute flex-col w-screen h-screen top-0 left-0 bg-black`}
+				onClick={handleButtonClick}>
+				<li className="absolute right-1 m-5 top-0 close">
+					<Image
+						src="/close.svg"
+						alt="Close"
+						width={20}
+						height={20}
+						className="w-auto h-auto"
+					/>
 				</li>
 				<li className={customClass}>
-					<Link href="/" className={`profile ${active}`} datatype="1">
+					<Link href="/" className={`${focus === "Profile" && active}`}>
 						Profile
 					</Link>
 				</li>
 				<li className={customClass}>
-					<Link href="/" className="top-fan" datatype="2">
+					<Link href="/top-fan" className={`${focus === "Top Fan" && active}`}>
 						Top Fan
 					</Link>
 				</li>
 				<li className={customClass}>
-					<Link href="/" className="custom" datatype="3">
+					<Link href="/" className={`${focus === "Custom" && active}`}>
 						Custom
 					</Link>
 				</li>
 				<li className={customClass}>
-					<Link href="/" className="recent-matches" datatype="4">
+					<Link href="/" className={`${focus === "Recent Matches" && active}`}>
 						Recent Matches
 					</Link>
 				</li>
 				<li className={customClass}>
-					<Link href="/" className="my-heroes" datatype="5">
+					<Link href="/" className={`${focus === "My Heroes" && active}`}>
 						My Heroes
 					</Link>
 				</li>
@@ -75,9 +71,9 @@ const Navbar = () => {
 				width={30}
 				height={30}
 				onClick={() => setIsOpen((prev) => !prev)}
-				className="my-5 ml-5"
+				className="my-5 ml-5 w-auto h-auto"
 			/>
-			<p className="w-screen text-center font-bold">Profile</p>
+			<p className="w-screen text-center font-bold banner-text">{focus}</p>
 		</>
 	);
 };

@@ -1,20 +1,36 @@
+"use client";
 import Image from "next/image";
+import { useEffect } from "react";
+import useStore from "./utils/navbar";
+import { shallow } from "zustand/shallow";
 
 export default function Home() {
+	const [focus, updateFocus] = useStore(
+		(state) => [state.focus, state.updateFocus],
+		shallow,
+	);
+
+	useEffect(() => {
+		if (focus !== "Profile") {
+			updateFocus("Profile");
+		}
+	}, [focus]);
+
 	return (
-		<main className="flex w-screen flex-col items-center justify-between p-24">
-			<section className="h-full flex w-screen flex-col items-center justify-center px-5">
+		<main className="flex w-full flex-col items-center justify-between py-10">
+			<section className="h-full flex w-full flex-col items-center py-5 justify-center px-10">
 				<Image
 					src="/profile.svg"
 					alt="chona mae's image"
 					width={150}
 					height={150}
+					className="w-auto h-auto"
 				/>
 				<h1 className="text-2xl mt-5 font-bold text-center">
 					Hello my name is <br />
 					<span className="text-[#EB00FF]">Chona Mae</span>
 				</h1>
-				<p className="text-center mt-3">
+				<p className="text-center mt-3 text-sm">
 					I am content creator in Mobile Legends, my in game name is Chona and
 					my FB Page name is{" "}
 					<span className="text-[#EB00FF] font-bold">DIMPL3 </span>
