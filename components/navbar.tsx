@@ -13,14 +13,6 @@ const Navbar = () => {
 	const [isOpen, setIsOpen] = useState(false);
 	const [focus] = useStore((state) => [state.focus]);
 
-	let lastClicked: number;
-	const storageDefault: string | null = localStorage.getItem("default");
-	if (storageDefault === null) {
-		lastClicked = 1;
-	} else {
-		lastClicked = parseInt(storageDefault);
-	}
-
 	const handleButtonClick = (): void => setIsOpen(false);
 
 	return (
@@ -50,7 +42,7 @@ const Navbar = () => {
 					</Link>
 				</li>
 				<li className={customClass}>
-					<Link href="/" className={`${focus === "Custom" && active}`}>
+					<Link href="/custom" className={`${focus === "Custom" && active}`}>
 						Custom
 					</Link>
 				</li>
@@ -71,7 +63,7 @@ const Navbar = () => {
 				width={30}
 				height={30}
 				onClick={() => setIsOpen((prev) => !prev)}
-				className="my-5 ml-5 w-auto h-auto"
+				className="my-5 ml-5 w-auto h-auto z-0"
 			/>
 			<p className="w-screen text-center font-bold banner-text">{focus}</p>
 		</>

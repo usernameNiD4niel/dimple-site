@@ -2,8 +2,9 @@
 
 import Image from "next/image";
 import { useEffect } from "react";
-import useStore from "../utils/navbar";
+import useStore from "../../utils/navbar";
 import { shallow } from "zustand/shallow";
+
 const TopFan = () => {
 	const [focus, updateFocus] = useStore(
 		(state) => [state.focus, state.updateFocus],

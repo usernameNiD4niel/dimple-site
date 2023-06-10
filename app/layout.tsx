@@ -1,7 +1,7 @@
 import "./globals.css";
 import { Inter } from "next/font/google";
-import Navbar from "./components/navbar";
-import Footer from "./components/footer";
+import Navbar from "../components/navbar";
+import Footer from "../components/footer";
 import { useState } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -19,7 +19,7 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<body className={inter.className}>
-				<header className="w-full sticky top-0 left-0 flex items-center justify-center bg-gradient-to-r from-black">
+				<header className="w-full sticky top-0 left-0 flex items-center justify-center bg-gradient-to-r from-black z-10">
 					<Navbar />
 				</header>
 				{children}

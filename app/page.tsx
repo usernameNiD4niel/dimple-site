@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import { useEffect } from "react";
-import useStore from "./utils/navbar";
+import useStore from "../utils/navbar";
 import { shallow } from "zustand/shallow";
 
 export default function Home() {
