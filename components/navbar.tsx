@@ -47,12 +47,16 @@ const Navbar = () => {
 					</Link>
 				</li>
 				<li className={customClass}>
-					<Link href="/" className={`${focus === "Recent Matches" && active}`}>
+					<Link
+						href="/recent-matches"
+						className={`${focus === "Recent Matches" && active}`}>
 						Recent Matches
 					</Link>
 				</li>
 				<li className={customClass}>
-					<Link href="/" className={`${focus === "My Heroes" && active}`}>
+					<Link
+						href="/my-heroes"
+						className={`${focus === "My Heroes" && active}`}>
 						My Heroes
 					</Link>
 				</li>

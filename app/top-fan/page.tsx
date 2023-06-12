@@ -1,11 +1,10 @@
 "use client";
-
 import Image from "next/image";
 import { useEffect } from "react";
 import useStore from "../../utils/navbar";
 import { shallow } from "zustand/shallow";
 
-const TopFan = () => {
+function TopFan() {
 	const [focus, updateFocus] = useStore(
 		(state) => [state.focus, state.updateFocus],
 		shallow,
@@ -14,7 +13,7 @@ const TopFan = () => {
 		if (focus !== "Top Fan") {
 			updateFocus("Top Fan");
 		}
-	}, [focus]);
+	}, []);
 	return (
 		<main>
 			<section className="w-screen flex flex-col items-center justify-center my-5 px-10">
@@ -109,6 +108,6 @@ const TopFan = () => {
 			</section>
 		</main>
 	);
-};
+}
 
 export default TopFan;

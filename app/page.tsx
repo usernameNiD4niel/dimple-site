@@ -14,7 +14,7 @@ export default function Home() {
 		if (focus !== "Profile") {
 			updateFocus("Profile");
 		}
-	}, [focus]);
+	}, []);
 
 	return (
 		<main className="flex w-full flex-col items-center justify-between py-10">

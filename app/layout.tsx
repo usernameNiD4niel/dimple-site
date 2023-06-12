@@ -18,7 +18,7 @@ export default function RootLayout({
 }) {
 	return (
 		<html lang="en">
-			<body className={inter.className}>
+			<body className={`overflow-x-hidden ${inter.className}`}>
 				<header className="w-full sticky top-0 left-0 flex items-center justify-center bg-gradient-to-r from-black z-10">
 					<Navbar />
 				</header>

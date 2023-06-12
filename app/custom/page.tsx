@@ -12,7 +12,11 @@ const Custom = () => {
 		shallow,
 	);
 
-	useEffect(() => updateFocus("Custom"), [focus]);
+	useEffect(() => {
+		if (focus !== "Custom") {
+			updateFocus("Custom");
+		}
+	}, []);
 	return (
 		<main className="py-3 flex flex-col gap-3 w-full items-center h-screen">
 			<Link

@@ -3,7 +3,8 @@ export interface CustomParamSlug {
 }
 
 interface CustomParamSlugSingle {
-    slug: string
+    slug: string,
+    id: number
 }
 
 export interface CustomNavParam {
