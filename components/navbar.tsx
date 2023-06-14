@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useState } from "react";
 import useStore from "../utils/navbar";
 
-const customClass: string = "pb-10";
+const customClass: string = "pb-10 md:pb-0 md:mr-10 md:text-xs";
 const active: string =
 	"transition ease-in-out duration-75 px-7 py-3 border border-transparent border-2 border-b-[#EB00FF] text-[#EB00FF]";
 
@@ -20,7 +20,7 @@ const Navbar = () => {
 			<ul
 				className={`${
 					!isOpen ? "hidden" : "flex opacity-100"
-				} items-center justify-center overflow-hidden opacity-0 my_ul transition-opacity duration-300 ease-in-out absolute flex-col w-screen h-screen top-0 left-0 bg-black`}
+				} md:flex md:opacity-100 items-center justify-center overflow-hidden opacity-0 transition-opacity duration-300 ease-in-out absolute flex-col w-screen h-screen top-0 left-0 md:flex-row md:h-20 md:py-5 md:bg-transparent bg-black md:bg-gradient-to-r md:from-black`}
 				onClick={handleButtonClick}>
 				<li className="absolute right-1 m-5 top-0 close">
 					<Image
@@ -28,7 +28,7 @@ const Navbar = () => {
 						alt="Close"
 						width={20}
 						height={20}
-						className="w-auto h-auto"
+						className="w-auto h-auto md:hidden"
 					/>
 				</li>
 				<li className={customClass}>
@@ -67,9 +67,11 @@ const Navbar = () => {
 				width={30}
 				height={30}
 				onClick={() => setIsOpen((prev) => !prev)}
-				className="my-5 ml-5 w-auto h-auto z-0"
+				className="my-5 ml-5 w-auto h-auto z-0 md:hidden"
 			/>
-			<p className="w-screen text-center font-bold banner-text">{focus}</p>
+			<p className="w-screen text-center font-bold banner-text md:hidden">
+				{focus}
+			</p>
 		</>
 	);
 };
