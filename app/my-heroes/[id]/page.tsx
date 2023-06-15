@@ -3,9 +3,10 @@ import { CustomParamSlug } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
 
-const header: string = "text-[#EB00FF] font-bold text-1xl";
-const textContent: string = "text-justify text-slate-200 pt-5";
-const parentClass: string = "w-full p-8";
+const header: string =
+	"text-[#EB00FF] font-bold md:w-[50%] text-1xl md:text-2xl";
+const textContent: string = "text-justify text-slate-200 pt-5 lg:max-w-[50%]";
+const parentClass: string = "w-full p-8 flex flex-col lg:items-center md:pt-0";
 
 const SpecificHero = ({ params }: CustomParamSlug) => {
 	return (
@@ -17,12 +18,12 @@ const SpecificHero = ({ params }: CustomParamSlug) => {
 					<Image src="/back-btn.svg" alt="back button" width={25} height={25} />
 					<p className="text-white mb-[2px] text-xs">Back</p>
 				</Link>
-				<h4 className="text-xs text-[#FFF500] w-full text-end">
+				<h4 className="text-xs text-[#FFF500] w-full text-end md:hidden">
 					Rank#{params.id}
 				</h4>
 			</nav>
 			{/* Hero Section */}
-			<section className="w-full flex flex-col items-center py-5">
+			<section className="w-full flex flex-col items-center py-5 md:flex-row md:justify-center md:py-10 md:gap-10">
 				<Image
 					src="/rounded_lou_yi.svg"
 					alt="Mobile Legends Hero, Lou Yi"
@@ -30,10 +31,15 @@ const SpecificHero = ({ params }: CustomParamSlug) => {
 					height={200}
 					className="w-auto h-auto "
 				/>
-				<h2 className="font-bold text-2xl text-center mx-8">
-					My favorite hero and most used hero this season is{" "}
-					<span className="text-[#EB00FF]">Lou Yi</span>
-				</h2>
+				<div>
+					<h4 className="hidden md:block text-md text-[#FFF500] font-bold">
+						Rank#{params.id}
+					</h4>
+					<h2 className="font-bold text-2xl text-center mx-8 md:text-start md:max-w-lg md:text-3xl md:mx-0">
+						My favorite hero and most used hero this season is{" "}
+						<span className="text-[#EB00FF]">Lou Yi</span>
+					</h2>
+				</div>
 			</section>
 			{/* Why is that? */}
 			<section className={parentClass}>
@@ -71,10 +77,10 @@ const SpecificHero = ({ params }: CustomParamSlug) => {
 			{/* Class type */}
 			<section className={parentClass}>
 				<h3 className={header}>Class and Type</h3>
-				<p>
+				<p className="md:w-[50%]">
 					<b>Class:</b> Mage
 				</p>
-				<p>
+				<p className="md:w-[50%]">
 					<b>Type:</b> Reap/Burst
 				</p>
 			</section>
