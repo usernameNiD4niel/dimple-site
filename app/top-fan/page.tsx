@@ -3,15 +3,14 @@ import Image from "next/image";
 import { useEffect } from "react";
 import useStore from "../../utils/navbar";
 import { shallow } from "zustand/shallow";
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient, TopFan } from "@prisma/client";
+import fetchTopFan from "@/helper";
+import TopFanData from "@/components/top-fan-data";
 
-async function fetchTopFan() {
-  const prisma = new PrismaClient();
-  const topFan = await prisma.topFan.findMany();
-  return topFan;
-}
+// React Library - tremor
+// Icons - Hero Icons
 
-async function TopFan() {
+export default function TopFan() {
   const [focus, updateFocus] = useStore(
     (state) => [state.focus, state.updateFocus],
     shallow
@@ -21,15 +20,13 @@ async function TopFan() {
       updateFocus("Top Fan");
     }
   }, []);
-  const data: any = await fetchTopFan()
-    .then(() => console.log("success"))
-    .catch((e) => console.log(`Erorr: ${e}`));
 
   const topFanClass: string =
     "w-full flex flex-col items-center justify-center my-5 px-10 sm:w-[400px]";
   return (
     <main className="md:pt-16 grid grid-cols-1 sm:grid-cols-2 items-center justify-items-center lg:grid-cols-3">
       <section className={topFanClass}>
+        <TopFanData />
         <Image
           src="/pogi.svg"
           alt="the most handsome person in the world"
@@ -47,5 +44,3 @@ async function TopFan() {
     </main>
   );
 }
-
-export default TopFan;

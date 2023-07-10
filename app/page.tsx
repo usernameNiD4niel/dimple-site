@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import useStore from "../utils/navbar";
 import { shallow } from "zustand/shallow";
 
-export default function Home() {
+export default function Home({ props }: any) {
   const [focus, updateFocus] = useStore(
     (state) => [state.focus, state.updateFocus],
     shallow
